@@ -1,0 +1,170 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
+    "copyFormatting": "all",
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "firstWindowPreference": "defaultProfile",
+    "initialCols": 200,
+    "initialPosition": "100,20",
+    "initialRows": 60,
+    "keybindings":
+    [
+        {
+            "id": "Terminal.DuplicatePaneRight",
+            "keys": "alt+shift+plus"
+        },
+        {
+            "id": "Terminal.DuplicateTab",
+            "keys": "ctrl+shift+t"
+        },
+        {
+            "id": "Terminal.DuplicatePaneDown",
+            "keys": "alt+shift+minus"
+        }
+    ],
+    "language": "en-us",
+    "newTabMenu":
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles":
+    {
+        "defaults":
+        {
+            "bellStyle": "taskbar",
+            "closeOnExit": "always",
+            "colorScheme": "Campbell",
+            "cursorShape": "vintage",
+            "font":
+            {
+                "face": "MesloLGS Nerd Font Mono",
+                "features":
+                {
+                    "calt": 0,
+                    "clig": 0,
+                    "dlig": 0
+                },
+                "size": 10,
+                "weight": "light"
+            },
+            "historySize": 9000,
+            "opacity": 95,
+            "padding": "4",
+            "rightClickContextMenu": true,
+            "startingDirectory": "%USERPROFILE%",
+            "useAcrylic": false
+        },
+        "list":
+        [
+            {
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "name": "PowerShell",
+                "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "guid": "{d977954a-8b94-587d-9931-2351edd17836}",
+                "hidden": false,
+                "icon": "ms-appdata:///local/icons/ubuntu.png",
+                "name": "Ubuntu",
+                "source": "Microsoft.WSL",
+                "startingDirectory": "\\\\wsl$\\Ubuntu\\home\\carlos"
+            },
+            {
+                "commandline": "\"%PROGRAMFILES%\\Git\\bin\\bash.exe\" -i -l",
+                "guid": "{f8f2bac3-8817-4058-a5f0-014461dad8e7}",
+                "icon": "ms-appdata:///local/icons/git-bash.png",
+                "name": "Git Bash",
+                "startingDirectory": "~"
+            },
+            {
+                "colorScheme": "Campbell Powershell",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "name": "Windows PowerShell"
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "name": "Command Prompt"
+            },
+            {
+                "commandline": "wsl --system",
+                "guid": "{d650db14-45b3-40fd-8b6b-3a029a7ec6ba}",
+                "icon": "ms-appdata:///local/icons/linux.png",
+                "name": "WSL System Distro",
+                "startingDirectory": "~"
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": true,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{16208362-94fc-5b1f-a491-5b2624d5ab56}",
+                "hidden": true,
+                "name": "Visual Studio Debug Console",
+                "source": "VSDebugConsole"
+            }
+        ]
+    },
+    "schemes":
+    [
+        {
+            "background": "#262427",
+            "black": "#262427",
+            "blue": "#49CAE4",
+            "brightBlack": "#545452",
+            "brightBlue": "#64D2E8",
+            "brightCyan": "#BAEBF6",
+            "brightGreen": "#C6E472",
+            "brightPurple": "#AEA3E6",
+            "brightRed": "#FF8787",
+            "brightWhite": "#FCFCFA",
+            "brightYellow": "#E5C07B",
+            "cursorColor": "#DFDFDE",
+            "cyan": "#61BBD2",
+            "foreground": "#DFDFDE",
+            "green": "#B6D560",
+            "name": "0x96f",
+            "purple": "#9A8FDC",
+            "red": "#F07171",
+            "selectionBackground": "#3D3B3E",
+            "white": "#DFDFDE",
+            "yellow": "#D1B16D"
+        },
+        {
+            "background": "#131313",
+            "black": "#1F1F1F",
+            "blue": "#2A84D2",
+            "brightBlack": "#D6DBE5",
+            "brightBlue": "#1081D6",
+            "brightCyan": "#0F7DDB",
+            "brightGreen": "#1DD361",
+            "brightPurple": "#5350B9",
+            "brightRed": "#DE352E",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#F3BD09",
+            "cursorColor": "#B9B9B9",
+            "cyan": "#1081D6",
+            "foreground": "#D6DBE5",
+            "green": "#2DC55E",
+            "name": "Brogrammer",
+            "purple": "#4E5AB7",
+            "red": "#F81118",
+            "selectionBackground": "#FFFFFF",
+            "white": "#D6DBE5",
+            "yellow": "#ECBA0F"
+        }
+    ],
+    "showTerminalTitleInTitlebar": true,
+    "tabWidthMode": "equal",
+    "theme": "system",
+    "themes": [],
+    "trimBlockSelection": true,
+    "useAcrylicInTabRow": false,
+    "windowingBehavior": "useExisting",
+    "wordDelimiters": " /\\()\"',:;<>~!@#$%^&*|+=[]{}~?\u2502"
+}
