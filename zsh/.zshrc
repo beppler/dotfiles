@@ -9,6 +9,7 @@ autoload -U compinit; compinit
 alias ls="ls -G"
 alias ll="ls -la"
 
+alias hcurl='curl -s -D - -o /dev/null'
 alias lg="lazygit"
 
 # go installed binaries
