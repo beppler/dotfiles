@@ -228,6 +228,7 @@ Remove-Item Alias:wget -Force -ErrorAction Ignore
 Set-Alias -Name edit -Value "$env:LOCALAPPDATA\Microsoft\WinGet\Links\edit.exe"
 Set-Alias -Name tshark -Value "$env:ProgramFiles\Wireshark\tshark.exe"
 Set-Alias -Name lg -Value lazygit.exe
+Set-Alias -Name ll -Value Get-ChildItem
 
 ### Completions
 
