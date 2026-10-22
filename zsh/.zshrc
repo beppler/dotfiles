@@ -12,11 +12,6 @@ alias ll="ls -la"
 alias hcurl='curl -s -D - -o /dev/null'
 alias lg="lazygit"
 
-# go installed binaries
-if [ -d "$HOME/go/bin" ]; then
-    path+=("$HOME/go/bin")
-fi
-
 # mise (https://github.com/jdx/mise)
 if (( $+commands[mise] )); then
     eval "$(mise activate zsh)"
