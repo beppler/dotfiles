@@ -8,24 +8,12 @@ $host.PrivateData.ProgressForegroundColor = 'White'
 $host.PrivateData.ProgressBackgroundColor = 'Blue'
 
 # Keys configuration
-if (-not (Get-Module -Name "PSReadLine")) {
-    Import-Module PSReadLine
+Import-Module PSReadLine -ErrorAction SilentlyContinue
+
+if (-not $error) {
+    Set-PSReadLineKeyHandler -Chord Ctrl+d -Function DeleteCharOrExit
+    Set-PSReadlineOption -BellStyle Visual
 }
-# Exit
-Set-PSReadLineKeyHandler -Chord Ctrl+d -Function DeleteCharOrExit
-# Other options
-Set-PSReadlineOption -BellStyle Visual
-
-### Modules
-
-# git
-Import-Module PSGitCompletions -ErrorAction SilentlyContinue
-
-# wsl
-Import-Module WSLTabCompletion -ErrorAction SilentlyContinue
-
-# Terminal-Icons
-Import-Module Terminal-Icons -ErrorAction SilentlyContinue
 
 ### Functions
 
@@ -51,7 +39,7 @@ function Copy-SSHIdentifier {
     )
     Get-Content $keyFileName | ssh $server "mkdir -p ~/.ssh; cat >> ~/.ssh/authorized_keys"
 }
-Set-Alias -Name ssh-copy-id Copy-SSHIdentifier
+Set-Alias -Name ssh-copy-id -Value Copy-SSHIdentifier
 
 # http://presthammer.wordpress.com/2014/04/15/whereis-equivalent-for-powershell/
 function Get-CommandDefinition {
@@ -65,8 +53,8 @@ function Get-CommandDefinition {
     )
     Get-Command -CommandType Application -ErrorAction SilentlyContinue -Name $target | Select-Object -ExpandProperty Definition
 }
-Set-Alias -Name whereis Get-CommandDefinition
-Set-Alias -Name which Get-CommandDefinition
+Set-Alias -Name whereis -Value Get-CommandDefinition
+Set-Alias -Name which -Value Get-CommandDefinition
 
 function Get-FontNames {
     (New-Object System.Drawing.Text.InstalledFontCollection).Families
@@ -135,7 +123,7 @@ function Invoke-Open {
         Start-Process ([string]$p)
     }
 }
-Set-Alias open Invoke-Open
+Set-Alias -Name open -Value Invoke-Open
 
 function Invoke-Proxy {
     ssh -L 8888:localhost:8888 -C -N beppler.dev.br
@@ -172,7 +160,7 @@ function Set-FileDate {
         New-Item -Path $file -ItemType File
     }
 }
-Set-Alias -Name touch Set-FileDate
+Set-Alias -Name touch -Value Set-FileDate
 
 function New-Symlink {
     param (
@@ -226,24 +214,24 @@ Remove-Item Alias:diff -Force -ErrorAction Ignore
 Remove-Item Alias:wget -Force -ErrorAction Ignore
 
 Set-Alias -Name edit -Value "$env:LOCALAPPDATA\Microsoft\WinGet\Links\edit.exe"
-Set-Alias -Name tshark -Value "$env:ProgramFiles\Wireshark\tshark.exe"
 Set-Alias -Name lg -Value lazygit.exe
 Set-Alias -Name ll -Value Get-ChildItem
+Set-Alias -Name tshark -Value "$env:ProgramFiles\Wireshark\tshark.exe"
+
+function hcurl { & curl -s -D - -o /dev/null $args }
+
 
 ### Completions
 
-# src: https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete
-# PowerShell parameter completion shim for the dotnet CLI
-Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
-    param($commandName, $wordToComplete, $cursorPosition)
+# git
+Import-Module PSGitCompletions -ErrorAction Ignore
 
-    dotnet complete --position $cursorPosition "$wordToComplete" | ForEach-Object {
-        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
-    }
+# dotnet src: https://docs.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete
+if (Get-Command -Name dotnet -CommandType Application -ErrorAction Ignore) {
+    dotnet completions script pwsh | Out-String | Invoke-Expression
 }
 
-# src: https://github.com/microsoft/winget-cli/blob/master/doc/Completion.md
-# Registers AutoCompletion for WinGet
+# winget src: https://github.com/microsoft/winget-cli/blob/master/doc/Completion.md
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)
     [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
@@ -254,18 +242,21 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
     }
 }
 
+# wsl
+Import-Module WSLTabCompletion -ErrorAction Ignore
 
 ### Misc
 
+Import-Module Terminal-Icons -ErrorAction Ignore
+
 # mise
-Get-Command -Name mise -CommandType Application -ErrorAction SilentlyContinue | Out-Null
-if (-not $error) {
-    (&mise activate pwsh) | Out-String | Invoke-Expression
+if (Get-Command -Name mise -CommandType Application -ErrorAction Ignore) {
+    mise activate pwsh | Out-String | Invoke-Expression
+    mise completions pwsh | Out-String | Invoke-Expression
 }
 
 # oh-my-posh
 $Error.Clear()
-Get-Command -Name oh-my-posh -CommandType Application -ErrorAction SilentlyContinue | Out-Null
-if (-not $error) {
-    oh-my-posh init pwsh --config ~\.config\oh-my-posh\custom.omp.toml | Invoke-Expression
+if (Get-Command -Name oh-my-posh -CommandType Application -ErrorAction Ignore) {
+    oh-my-posh init pwsh --config ~\.config\oh-my-posh\custom.omp.toml | Out-String | Invoke-Expression
 }
