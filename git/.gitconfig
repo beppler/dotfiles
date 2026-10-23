@@ -42,7 +42,7 @@
 	remotes = remote -v
 	st = status
 	sw = switch
-	tags = tag -l -n1 --sort version:refname
+	tags = "!git for-each-ref --sort=version:refname --format='%(refname:short)|%(creatordate:short)|%(if)%(taggeremail)%(then)%(taggeremail:trim)%(else)-%(end)|%(contents:subject)' refs/tags | column -t -s '|'"
 	sync = "!sync() { git pull upstream $(git rev-parse --abbrev-ref HEAD) && git push && git fetch; }; sync"
 	untracked = ls-files --others --exclude-standard
 	kick = "!kick() { git commit --allow-empty -m 'KICK PIPES'; git push; }; kick"
