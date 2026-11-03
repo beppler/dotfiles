@@ -27,8 +27,6 @@
 	directory = /var/lib/etcgit
 [tag]
 	gpgsign = true
-[http "https://gitlab.celepar.parana/"]
-	sslVerify = false
 [alias]
 	addnw = "!git -c diff.noprefix=false diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero #"
 	ignore = "!ignore() { curl -L -s https://www.gitignore.io/api/$@ ;}; ignore"
