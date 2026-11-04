@@ -8,12 +8,11 @@ $host.PrivateData.ProgressForegroundColor = 'White'
 $host.PrivateData.ProgressBackgroundColor = 'Blue'
 
 # Keys configuration
-Import-Module PSReadLine -ErrorAction SilentlyContinue
-
-if (-not $error) {
-    Set-PSReadLineKeyHandler -Chord Ctrl+d -Function DeleteCharOrExit
-    Set-PSReadlineOption -BellStyle Visual
+if (-not (Get-Module PSReadLine)) {
+    Import-Module PSReadLine -ErrorAction SilentlyContinue
 }
+Set-PSReadLineKeyHandler -Chord Ctrl+d -Function DeleteCharOrExit
+Set-PSReadlineOption -BellStyle Visual
 
 ### Functions
 
