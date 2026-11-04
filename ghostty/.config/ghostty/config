@@ -54,5 +54,5 @@ font-family = "Meslo LGM Nerd Font Mono"
 font-size = 11.5
 shell-integration-features = sudo,title
 theme = 0x96f
-window-height = 60
+window-height = 62
 window-width = 230
