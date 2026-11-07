@@ -8,6 +8,10 @@ This directory contains the dofiles for my system.
 
 ```shell
 sudo apt install git stow
+
+or
+
+sudo pacman -Syu git stow
 ```
 
 ### MacOS requirements
@@ -41,7 +45,7 @@ winget install --id MathiasCodes.Winstow
 Clone the dofiles repository in your $HOME directory using git.
 
 ```shell
-git clone ssh://git@codeberg.org/beppler/dotfiles.git .dotfiles
+git clone ssh://git@github.com/beppler/dotfiles.git .dotfiles
 ```
 
 ### Linux/MacOS configuration
